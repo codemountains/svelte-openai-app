@@ -87,6 +87,18 @@
                     </div>
                 {/if}
             {/each}
+            {#if  messageFeeds.length > 0 && disableSend}
+                <!-- OpenAI Message Bubble Placeholder -->
+                <div class="grid grid-cols-[auto_1fr] gap-2">
+                    <Avatar initials="AI" width="w-12" />
+                    <div class="card p-4 variant-soft rounded-tl-none space-y-2">
+                        <header class="flex justify-between items-center">
+                            <p class="font-bold">OpenAI</p>
+                        </header>
+                        <div class="placeholder animate-pulse" />
+                    </div>
+                </div>
+            {/if}
         </section>
     </div>
     <div class="bg-surface-500/30 p-4 w-full absolute bottom-0">
