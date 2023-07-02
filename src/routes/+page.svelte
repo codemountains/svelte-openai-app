@@ -38,25 +38,14 @@
             messages: messageFeeds.map(m => { return { role: "user", content: m.message }}),
         });
 
-        if (res.status === 200) {
-            const resMessage = {
-                id: messageFeeds.length,
-                host: false,
-                timestamp: moment(new Date()).format('YYYY/MM/DD HH:mm:ss'),
-                message: res.data.choices[0].message.content,
-            };
+        const resMessage = {
+            id: messageFeeds.length,
+            host: false,
+            timestamp: moment(new Date()).format('YYYY/MM/DD HH:mm:ss'),
+            message: res.status === 200 ? res.data.choices[0].message.content : 'Error...',
+        };
 
-            messageFeeds = [...messageFeeds, resMessage];
-        } else {
-            const resMessage = {
-                id: messageFeeds.length,
-                host: false,
-                timestamp: moment(new Date()).format('YYYY/MM/DD HH:mm:ss'),
-                message: 'Error...',
-            };
-
-            messageFeeds = [...messageFeeds, resMessage];
-        }
+        messageFeeds = [...messageFeeds, resMessage];
 
         // Smoothly scroll to the bottom of the feed
         setTimeout(() => { scrollChatBottom(); }, 0);
@@ -66,7 +55,7 @@
 <div bind:this={elemChat} class="h-full grid grid-rows-[1fr_auto] gap-1">
     <div class="bg-surface-500/30 p-4 overflow-y-auto mb-16">
         <section class="w-full h-full space-y-4">
-            {#each messageFeeds as bubble, i}
+            {#each messageFeeds as bubble}
                 {#if bubble.host === true}
                     <!-- Your Message Bubble -->
                     <div class="grid grid-cols-[1fr_auto] gap-2">
