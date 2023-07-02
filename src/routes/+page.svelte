@@ -14,12 +14,16 @@
     let elemChat: HTMLElement;
     let messageFeeds: MessageFeed[] = [];
     let currentMessage = '';
+    let disableSend = false;
+    $: disableSend = currentMessage.length === 0;
 
     function scrollChatBottom(): void {
         elemChat.scrollTo({ top: elemChat.scrollHeight, behavior: 'smooth' });
     }
 
     async function handleSend() {
+        disableSend = true;
+
         const newMessage = {
             id: messageFeeds.length,
             host: true,
@@ -49,6 +53,7 @@
 
         // Smoothly scroll to the bottom of the feed
         setTimeout(() => { scrollChatBottom(); }, 0);
+        disableSend = false;
     }
 </script>
 
@@ -94,7 +99,7 @@
                 name="prompt"
                 id="prompt"
                 placeholder="Write a message..."/>
-            <button class="variant-filled-primary" on:click={handleSend}>Send</button>
+            <button class="variant-filled-primary" on:click={handleSend} disabled="{disableSend}">Send</button>
         </div>
     </div>
 </div>
