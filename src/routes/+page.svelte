@@ -2,6 +2,7 @@
 <script lang="ts">
     import openai from "$lib/openai";
     import {Avatar} from "@skeletonlabs/skeleton";
+    import moment from "moment";
 
     let elemChat: HTMLElement;
     let messageFeeds = [];
@@ -15,7 +16,7 @@
         const newMessage = {
             id: messageFeeds.length,
             host: true,
-            timestamp: new Date(),
+            timestamp: moment(new Date()).format('YYYY/MM/DD HH:mm:ss'),
             message: currentMessage,
         };
 
@@ -34,7 +35,7 @@
             const resMessage = {
                 id: messageFeeds.length,
                 host: false,
-                timestamp: new Date(),
+                timestamp: moment(new Date()).format('YYYY/MM/DD HH:mm:ss'),
                 message: res.data.choices[0].message.content,
             };
 
@@ -43,7 +44,7 @@
             const resMessage = {
                 id: messageFeeds.length,
                 host: false,
-                timestamp: new Date(),
+                timestamp: moment(new Date()).format('YYYY/MM/DD HH:mm:ss'),
                 message: 'Error...',
             };
 
