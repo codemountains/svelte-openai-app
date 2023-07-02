@@ -87,13 +87,13 @@
     <div class="bg-surface-500/30 p-4 w-full absolute bottom-0">
         <div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-container-token">
             <button class="input-group-shim">+</button>
-            <textarea
+            <input
                 bind:value={currentMessage}
                 class="bg-transparent border-0 ring-0"
+                type="text"
                 name="prompt"
                 id="prompt"
-                placeholder="Write a message..."
-                rows="1"/>
+                placeholder="Write a message..."/>
             <button class="variant-filled-primary" on:click={handleSend}>Send</button>
         </div>
     </div>
