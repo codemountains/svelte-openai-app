@@ -1,6 +1,6 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script lang="ts">
-	import openai from "$lib/openai.ts";
+	import openai from "$lib/openai";
 	import {Avatar} from "@skeletonlabs/skeleton";
 
 	let elemChat: HTMLElement;
