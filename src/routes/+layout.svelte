@@ -5,7 +5,7 @@
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
-	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
+	import {AppShell, AppBar, LightSwitch} from '@skeletonlabs/skeleton';
 </script>
 
 <!-- App Shell -->
@@ -25,6 +25,7 @@
 				>
 					OpenAI platform
 				</a>
+				<LightSwitch />
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
