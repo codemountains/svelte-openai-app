@@ -4,8 +4,15 @@
     import {Avatar} from "@skeletonlabs/skeleton";
     import moment from "moment";
 
+    type MessageFeed = {
+        id: number;
+        host: boolean;
+        timestamp: string;
+        message: string;
+    };
+
     let elemChat: HTMLElement;
-    let messageFeeds = [];
+    let messageFeeds: MessageFeed[] = [];
     let currentMessage = '';
 
     function scrollChatBottom(): void {
@@ -28,7 +35,7 @@
 
         const res = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
-            messages: messageFeeds.map(m => { return { role: "user", content: m.message as string }}),
+            messages: messageFeeds.map(m => { return { role: "user", content: m.message }}),
         });
 
         if (res.status === 200) {
